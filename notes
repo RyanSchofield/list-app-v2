@@ -1,0 +1,20 @@
+group components will take the parsed itemsJSON (should be an array of objects) as an input. 
+groups will have title (string) and collapsed (boolean) attributes.
+groups wil list the items (item.value is string, item.flagged is a boolean) with *ngFor.
+logic for adding/removing/flagging items, or collapsing group will be on group component.
+	don't worry about deleting group for now.
+on change, an event will be emitted.
+list component will listen for this event and update firestore. 
+	id should be an attribute on group component to update correct document?
+	alternatively, groups could be passed their corresponding document ref?
+
+actually, this is what we will do:
+	pass a docRef to each group
+	group component will get the items collection on each group doc
+	items collection will be listed.
+
+<div class="groups">
+  <div class="group" *ngFor="let group of groups;">
+    <app-group></app-group>
+  </div>
+</div>

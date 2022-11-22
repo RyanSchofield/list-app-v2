@@ -1,0 +1,17 @@
+<p>list works!</p>
+<div class="groups">
+  <div class="group" *ngFor="let group of groups$ | async;">
+    <div class="group-title">
+      {{group.payload.doc.data().name}}
+    </div> 
+    <div class="items">
+      <div class="item" *ngFor="let item of group.payload.doc.get('items');">
+        --- {{item}}
+      </div>
+    </div>
+    <input #newItem (keyup.enter)="addItem(newItem.value, group.payload.doc.id); newItem.value = '';">
+  </div>
+</div>
+<div class="new-group">
+<input [(ngModel)]="newGroupName">
+<button type="button" (click)="addGroup(newGroupName)">add</button>
